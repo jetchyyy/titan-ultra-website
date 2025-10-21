@@ -20,11 +20,16 @@ const Header: React.FC<HeaderProps> = ({ onOrderClick }) => {
     <header className="bg-black text-white sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
+         
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-red-600 rounded-lg flex items-center justify-center font-bold text-black text-sm">
-              TU
-            </div>
+          {/* Logo */}
+          <div className="flex items-center">
+            <img 
+              src="/titan-ultra-logo.png" 
+              alt="Titan Ultra - Giant Risers" 
+              className="h-16 w-auto"
+            />
+          </div>
             <div className="flex flex-col">
               <span className="text-xs font-semibold text-yellow-400">TITAN</span>
               <span className="text-xs font-semibold text-red-600">ULTRA</span>

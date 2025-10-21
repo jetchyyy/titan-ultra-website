@@ -25,9 +25,6 @@ const App: React.FC = () => {
     setIsOrderModalOpen(true);
   };
 
-  const handleLearnMore = () => {
-    ingredientsRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   const handleCloseModal = () => {
     setIsOrderModalOpen(false);

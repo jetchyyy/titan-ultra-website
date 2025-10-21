@@ -19,7 +19,7 @@ const Footer: React.FC<FooterProps> = ({ }) => {
   const contactInfo = [
     { icon: Phone, label: '+1 (800) 123-4567', href: 'tel:+18001234567' },
     { icon: Mail, label: 'support@titanultra.com', href: 'mailto:support@titanultra.com' },
-    { icon: MapPin, label: 'New York, USA', href: '#' }
+    { icon: MapPin, label: 'Cebu City', href: '#' }
   ];
 
   const socialLinks = [
@@ -36,9 +36,13 @@ const Footer: React.FC<FooterProps> = ({ }) => {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-red-600 rounded-lg flex items-center justify-center font-bold text-black text-sm">
-                TU
-              </div>
+              <div className="flex items-center">
+            <img 
+              src="/titan-ultra-logo.png" 
+              alt="Titan Ultra - Giant Risers" 
+              className="h-16 w-auto"
+            />
+          </div>
               <div>
                 <div className="text-sm font-semibold text-yellow-400">TITAN</div>
                 <div className="text-sm font-semibold text-red-600">ULTRA</div>
@@ -50,20 +54,21 @@ const Footer: React.FC<FooterProps> = ({ }) => {
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-bold mb-6">Quick Links</h4>
-            <nav className="space-y-5">
-              {quickLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-gray-400 hover:text-yellow-400 transition text-sm"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-          </div>
+         <div>
+  <h4 className="text-lg font-bold mb-6">Quick Links</h4>
+  <nav className="flex flex-col gap-4">
+    {quickLinks.map((link) => (
+      <a
+        key={link.label}
+        href={link.href}
+        className="text-gray-400 hover:text-yellow-400 transition text-sm"
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+</div>
+
 
           {/* Contact Info */}
           <div>
