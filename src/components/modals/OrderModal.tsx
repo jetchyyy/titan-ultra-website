@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Package, Users, MapPin, User, ShoppingCart, Loader } from 'lucide-react';
+import { X, Package,  MapPin, User, ShoppingCart, Loader } from 'lucide-react';
 import { db } from '../../firebase/config';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import SuccessModal from './SuccessModal';
@@ -176,10 +176,10 @@ const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose, orderType = 'r
                       <p className="text-sm text-gray-400">For personal use</p>
                     </div>
                   </div>
-                  <p className="text-2xl font-bold text-yellow-400">₱200 <span className="text-sm text-gray-400">per pack</span></p>
+                  <p className="text-2xl font-bold text-yellow-400">P100 <span className="text-sm text-gray-400">per pack</span></p>
                 </button>
 
-                <button
+                {/* <button
                   type="button"
                   onClick={() => handleTypeChange('distributor')}
                   disabled={loading}
@@ -198,7 +198,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose, orderType = 'r
                   </div>
                   <p className="text-2xl font-bold text-yellow-400">₱150 <span className="text-sm text-gray-400">per pack</span></p>
                   <span className="inline-block mt-2 text-xs bg-green-600 text-white px-2 py-1 rounded">Save 25%</span>
-                </button>
+                </button> */}
               </div>
             </div>
 

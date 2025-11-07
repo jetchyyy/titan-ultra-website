@@ -1,73 +1,42 @@
 // src/components/sections/Pricing.tsx
 import React, { useState } from 'react';
-import { Package, Users, Check, ShoppingCart } from 'lucide-react';
+import { Package, Check, ShoppingCart } from 'lucide-react';
 import OrderModal from '../modals/OrderModal';
 
 interface PricingTier {
   title: string;
   subtitle: string;
   price: number;
-  originalPrice?: number;
   unit: string;
-  minOrder?: number;
   features: string[];
-  recommended?: boolean;
-  icon: 'package' | 'users';
+  icon: 'package';
 }
 
 interface PricingProps {
   onOrderClick?: (type: 'retail' | 'distributor') => void;
 }
 
-
-
 const Pricing: React.FC<PricingProps> = ({ }) => {
-  const [selectedTier, setSelectedTier] = useState<number>(0);
-
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
-const [orderType, setOrderType] = useState<'retail' | 'distributor'>('retail');
 
+  const pricingTier: PricingTier = {
+    title: 'Per Piece',
+    subtitle: 'Perfect for personal use',
+    price: 100,
+    unit: 'per pack (2 capsules)',
+    features: [
+      '2 Capsules per pack',
+      'Premium herbal extracts',
+      'Fast-acting formula',
+      'Quality assured',
+      'Ready to use'
+    ],
+    icon: 'package'
+  };
 
-  const pricingTiers: PricingTier[] = [
-    {
-      title: 'Per Piece',
-      subtitle: 'Perfect for personal use',
-      price: 200,
-      unit: 'per pack (2 capsules)',
-      features: [
-        '2 Capsules per pack',
-        'Premium herbal extracts',
-        'Fast-acting formula',
-        'Quality assured',
-        'Ready to use'
-      ],
-      icon: 'package'
-    },
-    {
-      title: 'Bulk Orders',
-      subtitle: 'Best value for resellers',
-      price: 150,
-      originalPrice: 200,
-      unit: 'per pack',
-      minOrder: 100,
-      features: [
-        'Minimum 100 packs',
-        '25% wholesale discount',
-        'Distributor pricing available',
-        'Business opportunity',
-        'Exclusive reseller support',
-        'Marketing materials included'
-      ],
-      recommended: true,
-      icon: 'users'
-    }
-  ];
-
-  const handleOrderButtonClick = (type: 'retail' | 'distributor') => {
-  setOrderType(type);
-  setIsOrderModalOpen(true);
-};
-
+  const handleOrderButtonClick = () => {
+    setIsOrderModalOpen(true);
+  };
 
   return (
     <section id="pricing" className="bg-gradient-to-b from-black via-gray-900 to-black text-white py-24 px-4 relative overflow-hidden">
@@ -97,84 +66,47 @@ const [orderType, setOrderType] = useState<'retail' | 'distributor'>('retail');
           </div>
         </div>
 
-        {/* Pricing Cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {pricingTiers.map((tier, index) => (
-            <div
-              key={index}
-              onClick={() => setSelectedTier(index)}
-              className={`relative rounded-2xl p-8 cursor-pointer transition-all duration-300 transform hover:scale-105 ${
-                selectedTier === index
-                  ? 'bg-gradient-to-br from-red-600 to-red-700 shadow-2xl shadow-red-600/50'
-                  : 'bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800'
-              }`}
-            >
-              {tier.recommended && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-yellow-400 text-black px-6 py-2 rounded-full text-sm font-bold shadow-lg">
-                    BEST VALUE
-                  </span>
-                </div>
-              )}
-
-              {/* Icon */}
-              <div className="flex justify-center mb-6">
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center ${
-                  selectedTier === index ? 'bg-white/20' : 'bg-gradient-to-br from-yellow-400 to-red-600'
-                }`}>
-                  {tier.icon === 'package' ? (
-                    <Package className="w-8 h-8" />
-                  ) : (
-                    <Users className="w-8 h-8" />
-                  )}
-                </div>
+        {/* Pricing Card */}
+        <div className="max-w-md mx-auto">
+          <div className="relative rounded-2xl p-8 bg-gradient-to-br from-red-600 to-red-700 shadow-2xl shadow-red-600/50">
+            {/* Icon */}
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center bg-white/20">
+                <Package className="w-8 h-8" />
               </div>
-
-              {/* Title */}
-              <h3 className="text-3xl font-bold text-center mb-2">{tier.title}</h3>
-              <p className="text-center text-sm opacity-90 mb-6">{tier.subtitle}</p>
-
-              {/* Price */}
-              <div className="text-center mb-8">
-                {tier.originalPrice && (
-                  <span className="text-2xl line-through opacity-50 mr-2">₱{tier.originalPrice}</span>
-                )}
-                <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-5xl font-black text-yellow-400">₱{tier.price}</span>
-                  <span className="text-lg opacity-75">/ {tier.unit}</span>
-                </div>
-                {tier.minOrder && (
-                  <p className="text-sm mt-2 opacity-90">Minimum order: {tier.minOrder} packs</p>
-                )}
-              </div>
-
-              {/* Features */}
-              <ul className="space-y-4 mb-8">
-                {tier.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA Button */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleOrderButtonClick(tier.icon === 'users' ? 'distributor' : 'retail');
-                }}
-                className={`w-full py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 ${
-                  selectedTier === index
-                    ? 'bg-yellow-400 text-black hover:bg-yellow-300 shadow-lg shadow-yellow-400/50'
-                    : 'bg-white/10 hover:bg-white/20'
-                }`}
-              >
-                <ShoppingCart className="w-5 h-5" />
-                {tier.icon === 'users' ? 'Become a Distributor' : 'Order Now'}
-              </button>
             </div>
-          ))}
+
+            {/* Title */}
+            <h3 className="text-3xl font-bold text-center mb-2">{pricingTier.title}</h3>
+            <p className="text-center text-sm opacity-90 mb-6">{pricingTier.subtitle}</p>
+
+            {/* Price */}
+            <div className="text-center mb-8">
+              <div className="flex items-baseline justify-center gap-1">
+                <span className="text-5xl font-black text-yellow-400">₱{pricingTier.price}</span>
+                <span className="text-lg opacity-75">/ {pricingTier.unit}</span>
+              </div>
+            </div>
+
+            {/* Features */}
+            <ul className="space-y-4 mb-8">
+              {pricingTier.features.map((feature, idx) => (
+                <li key={idx} className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA Button */}
+            <button
+              onClick={handleOrderButtonClick}
+              className="w-full py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 bg-yellow-400 text-black hover:bg-yellow-300 shadow-lg shadow-yellow-400/50"
+            >
+              <ShoppingCart className="w-5 h-5" />
+              Order Now
+            </button>
+          </div>
         </div>
 
         {/* Additional Info */}
@@ -222,10 +154,10 @@ const [orderType, setOrderType] = useState<'retail' | 'distributor'>('retail');
         }
       `}</style>
 
-       <OrderModal
+      <OrderModal
         isOpen={isOrderModalOpen}
         onClose={() => setIsOrderModalOpen(false)}
-        orderType={orderType}
+        orderType="retail"
       />
     </section>
   );

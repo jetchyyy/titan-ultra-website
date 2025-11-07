@@ -8,7 +8,7 @@ interface HeroProps {
   onLearnMore?: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ onOrderClick, onLearnMore }) => {
+const Hero: React.FC<HeroProps> = ({ onOrderClick,  }) => {
   return (
     <section className="bg-gradient-to-b from-black via-gray-900 to-black text-white py-20 px-4 relative overflow-hidden">
       {/* Background gradient elements */}
@@ -29,8 +29,8 @@ const Hero: React.FC<HeroProps> = ({ onOrderClick, onLearnMore }) => {
           Experience the power of premium, all-natural herbal extracts designed for peak male vitality
         </p>
 
-        {/* Rotating Product Image with Custom Styling */}
-        <div className="mb-12 flex justify-center perspective-container">
+        {/* Static Product Image with Custom Styling */}
+        <div className="mb-12 flex justify-center">
           <div className="relative w-72 h-96 md:w-96 md:h-[500px]">
             {/* Animated glow rings */}
             <div className="absolute inset-0 flex items-center justify-center">
@@ -38,9 +38,9 @@ const Hero: React.FC<HeroProps> = ({ onOrderClick, onLearnMore }) => {
               <div className="absolute w-4/5 h-4/5 bg-gradient-to-br from-yellow-500/30 to-red-600/30 rounded-full filter blur-2xl animate-pulse-glow-delayed" />
             </div>
             
-            {/* 3D Rotating container */}
+            {/* Static container */}
             <div className="product-showcase relative w-full h-full flex items-center justify-center">
-              <div className="rotating-product w-full h-full flex items-center justify-center">
+              <div className="w-full h-full flex items-center justify-center">
                 <img 
                   src="/titan-ultra-productt.png" 
                   alt="Titan Ultra Dietary Supplement Package"
@@ -70,13 +70,13 @@ const Hero: React.FC<HeroProps> = ({ onOrderClick, onLearnMore }) => {
           >
             🛒 Order Now
           </Button>
-          <Button
+          {/* <Button
             variant="outline"
             size="lg"
             onClick={onLearnMore}
           >
             💼 Become A Distributor
-          </Button>
+          </Button> */}
         </div>
 
         <div className="flex justify-center animate-bounce">
@@ -86,39 +86,7 @@ const Hero: React.FC<HeroProps> = ({ onOrderClick, onLearnMore }) => {
 
       {/* Custom Animations and Styles */}
       <style>{`
-        .perspective-container {
-          perspective: 1500px;
-        }
-
-        /* 3D Rotation Animation */
-        @keyframes rotate3d {
-          0% {
-            transform: rotateY(0deg) rotateX(0deg);
-          }
-          25% {
-            transform: rotateY(90deg) rotateX(5deg);
-          }
-          50% {
-            transform: rotateY(180deg) rotateX(0deg);
-          }
-          75% {
-            transform: rotateY(270deg) rotateX(-5deg);
-          }
-          100% {
-            transform: rotateY(360deg) rotateX(0deg);
-          }
-        }
-
-        .rotating-product {
-          animation: rotate3d 10s ease-in-out infinite;
-          transform-style: preserve-3d;
-        }
-
         /* Smooth scale on hover */
-        .product-showcase:hover .rotating-product {
-          animation-play-state: paused;
-        }
-
         .product-image {
           transition: transform 0.3s ease;
         }
@@ -210,13 +178,6 @@ const Hero: React.FC<HeroProps> = ({ onOrderClick, onLearnMore }) => {
           75% {
             transform: translateY(-20px) translateX(-10px);
             opacity: 1;
-          }
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-          .rotating-product {
-            animation: rotate3d 12s ease-in-out infinite;
           }
         }
       `}</style>

@@ -1,6 +1,6 @@
 // src/components/layout/Footer.tsx
 import React from 'react';
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram,  } from 'lucide-react';
 
 interface FooterProps {
   onContactClick?: () => void;
@@ -17,15 +17,15 @@ const Footer: React.FC<FooterProps> = ({ }) => {
   ];
 
   const contactInfo = [
-    { icon: Phone, label: '+1 (800) 123-4567', href: 'tel:+18001234567' },
-    { icon: Mail, label: 'support@titanultra.com', href: 'mailto:support@titanultra.com' },
+    { icon: Phone, label: '+639099855322 / +639930050994', href: 'tel:+18001234567' },
+    { icon: Mail, label: 'madayajetch@gmail.com', href: 'mailto:madayajetch@gmail.com' },
     { icon: MapPin, label: 'Cebu City', href: '#' }
   ];
 
   const socialLinks = [
-    { icon: Facebook, label: 'Facebook', href: '#' },
-    { icon: Instagram, label: 'Instagram', href: '#' },
-    { icon: Twitter, label: 'Twitter', href: '#' }
+    { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61581864323050' },
+    { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/titanultracebu/' },
+    // { icon: Twitter, label: 'Twitter', href: '#' }
   ];
 
   return (
