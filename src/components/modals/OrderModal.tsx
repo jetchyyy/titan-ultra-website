@@ -31,7 +31,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose, orderType = 'r
 
   if (!isOpen) return null;
 
-  const pricePerPack = selectedType === 'retail' ? 200 : 150;
+  const pricePerPack = selectedType === 'retail' ? 100 : 150;
   const minQuantity = selectedType === 'retail' ? 1 : 100;
   const totalPrice = formData.quantity * pricePerPack;
 
@@ -176,7 +176,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ isOpen, onClose, orderType = 'r
                       <p className="text-sm text-gray-400">For personal use</p>
                     </div>
                   </div>
-                  <p className="text-2xl font-bold text-yellow-400">P100 <span className="text-sm text-gray-400">per pack</span></p>
+                  <p className="text-2xl font-bold text-yellow-400">₱100 <span className="text-sm text-gray-400">per pack</span></p>
                 </button>
 
                 {/* <button
